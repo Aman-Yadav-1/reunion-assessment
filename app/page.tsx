@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Header } from "@/components/Header"
+import '@/app/globals.css'
 
 export default function Home() {
   const router = useRouter()
