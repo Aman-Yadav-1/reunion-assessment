@@ -60,6 +60,10 @@ const TaskDateTime = ({ label, date, time }: { label: string, date: string, time
     </div>
 );
 
+const handleError = (error: Error) => {
+    console.error(error)
+}
+
 export function TaskCard({ task, onDelete }: { task: Task, onDelete: (id: string) => void }) {
     const [isEditOpen, setIsEditOpen] = useState(false);
 
@@ -99,8 +103,12 @@ export function TaskList() {
     const [isAddOpen, setIsAddOpen] = useState(false)
 
     const handleAdd = async (newTask: any): Promise<void> => {
-        setTasks([...tasks, { ...newTask, id: String(tasks.length + 1) }])
-        setIsAddOpen(false)
+        try {
+            setTasks([...tasks, { ...newTask, id: String(tasks.length + 1) }])
+            setIsAddOpen(false)
+        } catch (error) {
+            handleError(error as Error)
+        }
     }
 
     const handleDelete = (id: string) => {

@@ -6,6 +6,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { useState, useEffect } from "react"
 import { Calendar } from "lucide-react" 
 
+interface EditTaskDialogProps {
+    onSubmit: (task: Partial<Task>) => Promise<void>
+  }
+  
+
 export function EditTaskDialog({ open, onOpenChange, task, onSubmit }: { open: boolean; onOpenChange: (isOpen: boolean) => void; task: Partial<Task>; onSubmit: (task: Partial<Task>) => Promise<void> }) {
     const [title, setTitle] = useState(task?.title || "");
     const [priority, setPriority] = useState(task?.priority || 1);
