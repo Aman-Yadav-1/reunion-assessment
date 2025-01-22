@@ -1,7 +1,6 @@
 'use client'
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { AddTaskDialog } from "./AddTaskDialog"
 import { useState } from "react"
 import { Plus } from "lucide-react"

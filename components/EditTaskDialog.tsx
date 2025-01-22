@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { useState, useEffect } from "react"
-import { Calendar } from "lucide-react" // Assuming you have a Calendar component from lucide-react
+import { Calendar } from "lucide-react" 
 
 export function EditTaskDialog({ open, onOpenChange, task }: any) {
     const [title, setTitle] = useState(task?.title || "");
