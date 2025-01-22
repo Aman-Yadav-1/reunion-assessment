@@ -4,4 +4,4 @@ const nextConfig = {
   swcMinify: true
 }
 
-export default nextConfigexport default nextConfig
+export default nextConfig
