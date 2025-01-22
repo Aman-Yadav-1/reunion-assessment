@@ -1,41 +1,20 @@
-import { connectDB } from '@/lib/db/connect'
-import { Task } from '@/lib/db/models/Task'
-import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { DefaultSession } from 'next-auth'
+import { NextResponse } from "next/server"
+import { headers } from "next/headers"
 
-declare module 'next-auth' {
-  interface Session {
-    user: {
-      id: string
-    } & DefaultSession['user']
-  }
-}
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
-  try {
-    await connectDB()
-    const session = await getServerSession()
-    
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const headersList = headers()
+  
+  return NextResponse.json({
+    totalTasks: 0,
+    completedTasks: 0,
+    pendingTasks: 0,
+    highPriorityTasks: 0,
+    lastUpdated: new Date().toISOString()
+  }, {
+    headers: {
+      'Cache-Control': 'no-store'
     }
-
-    const totalTasks = await Task.countDocuments({ userId: session.user.id })
-    const completedTasks = await Task.countDocuments({ 
-      userId: session.user.id,
-      status: 'finished'
-    })
-
-    const stats = {
-      totalTasks,
-      completedPercentage: (completedTasks / totalTasks) * 100,
-      pendingPercentage: ((totalTasks - completedTasks) / totalTasks) * 100,
-      // Add other stats calculations here
-    }
-
-    return NextResponse.json(stats)
-  } catch (error) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
-  }
+  })
 }
