@@ -105,7 +105,7 @@ export function TaskCard({ task, onDelete }: { task: Task, onDelete: (id: string
     )
 }
 
-export default function TaskList({ tasks, onTaskUpdate, onTaskDelete }: TaskListProps) {
+export default function TaskList({ tasks: initialTasks, onTaskUpdate, onTaskDelete }: TaskListProps) {
     const [tasks, setTasks] = useState(initialTasks)
     const [isAddOpen, setIsAddOpen] = useState(false)
 
