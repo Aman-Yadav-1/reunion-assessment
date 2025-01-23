@@ -25,18 +25,7 @@ type Task = {
     endTime: string;
 }
 
-const initialTasks = [
-    {
-        id: '1',
-        title: 'Sample Task',
-        priority: 1,
-        status: 'pending',
-        startDate: '2024-02-20',
-        startTime: '10:00',
-        endDate: '2024-02-20',
-        endTime: '11:00'
-    }
-]
+// Removed unused initialTasks
 
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -116,11 +105,11 @@ export default function TaskList({ tasks: initialTasks, onTaskUpdate, onTaskDele
         } catch (error) {
             handleError(error as Error)
         }
-    }
+export default function TaskList({ tasks: initialTasks, onTaskDelete }: TaskListProps) {
 
     const handleDelete = (id: string) => {
         setTasks(tasks.filter(task => task.id !== id))
-    }
+    const handleAdd = async (newTask: Task): Promise<void> => {
 
     return (
         <>
