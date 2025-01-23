@@ -14,6 +14,11 @@ A sleek, modern Next.js application leveraging the latest features and best prac
 - 🔄 **Hot Reload**: Instant updates during development.  
 
 ---
+## Screenshots
+
+<img src="https://github.com/Aman-Yadav-1/reunion-assessment/blob/master/img/Screenshot_23-1-2025_61236_reunion-assessment-aman.vercel.app.jpeg">Home Page</img>
+<img src="https://github.com/Aman-Yadav-1/reunion-assessment/blob/master/img/Screenshot_23-1-2025_61247_reunion-assessment-aman.vercel.app.jpeg">Dashboard</img>
+<img src="https://github.com/Aman-Yadav-1/reunion-assessment/blob/master/img/Screenshot_23-1-2025_61336_reunion-assessment-aman.vercel.app.jpeg">TaskList</img>
 
 ## 🛠️ Tech Stack  
 
