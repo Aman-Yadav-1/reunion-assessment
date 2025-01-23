@@ -6,6 +6,13 @@ import { useState } from "react"
 import { Plus } from "lucide-react"
 import { Header } from "./Header"
 import { EditTaskDialog } from "./EditTaskDialog"
+import { Task } from '@/types'
+
+interface TaskListProps {
+    tasks: Task[]
+    onTaskUpdate: (taskId: string, updates: Partial<Task>) => void
+    onTaskDelete: (taskId: string) => void
+  }
 
 type Task = {
     id: string;
@@ -98,7 +105,7 @@ export function TaskCard({ task, onDelete }: { task: Task, onDelete: (id: string
     )
 }
 
-export function TaskList() {
+export default function TaskList({ tasks, onTaskUpdate, onTaskDelete }: TaskListProps) {
     const [tasks, setTasks] = useState(initialTasks)
     const [isAddOpen, setIsAddOpen] = useState(false)
 
