@@ -29,13 +29,13 @@ export function EditTaskDialog({ open, onOpenChange, task }: { open: boolean; on
 
     useEffect(() => {
         if (task) {
-            setTitle(task.title);
-            setPriority(task.priority);
+            setTitle(task.title || "");
+            setPriority(task.priority || 1);
             setStatus(task.status === "finished");
-            setStartDate(task.startDate);
-            setStartTime(task.startTime);
-            setEndDate(task.endDate);
-            setEndTime(task.endTime);
+            setStartDate(task.startDate || "");
+            setStartTime(task.startTime || "");
+            setEndDate(task.endDate || "");
+            setEndTime(task.endTime || "");
         }
     }, [task]);
 
