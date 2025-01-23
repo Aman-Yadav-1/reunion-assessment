@@ -18,7 +18,7 @@ type Task = {
     endTime: string;
 }
 
-const initialTasks = [
+const initialTasks: Task[] = [
     {
         id: '1',
         title: 'Sample Task',
@@ -31,7 +31,7 @@ const initialTasks = [
     }
 ]
 
-const formatDate = (dateString: string) => {
+const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', {
         day: '2-digit',
@@ -40,7 +40,7 @@ const formatDate = (dateString: string) => {
     }).replace(/ /g, '-');
 }
 
-const formatTime = (timeString: string) => {
+const formatTime = (timeString: string): string => {
     const [hours, minutes] = timeString.split(':');
     const date = new Date();
     date.setHours(parseInt(hours));
@@ -95,15 +95,15 @@ export function TaskCard({ task, onDelete }: { task: Task, onDelete: (id: string
 }
 
 export function TaskList() {
-    const [tasks, setTasks] = useState(initialTasks)
+    const [tasks, setTasks] = useState<Task[]>(initialTasks)
     const [isAddOpen, setIsAddOpen] = useState(false)
 
-    const handleAdd = async (newTask: any): Promise<void> => {
+    const handleAdd = async (newTask: Omit<Task, 'id'>): Promise<void> => {
         setTasks([...tasks, { ...newTask, id: String(tasks.length + 1) }])
         setIsAddOpen(false)
     }
 
-    const handleDelete = (id: string) => {
+    const handleDelete = (id: string): void => {
         setTasks(tasks.filter(task => task.id !== id))
     }
 
