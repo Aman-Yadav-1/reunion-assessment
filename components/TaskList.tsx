@@ -6,13 +6,6 @@ import { useState } from "react"
 import { Plus } from "lucide-react"
 import { Header } from "./Header"
 import { EditTaskDialog } from "./EditTaskDialog"
-import { Task } from '@/types'
-
-interface TaskListProps {
-    tasks: Task[]
-    onTaskUpdate: (taskId: string, updates: Partial<Task>) => void
-    onTaskDelete: (taskId: string) => void
-  }
 
 type Task = {
     id: string;
@@ -25,7 +18,18 @@ type Task = {
     endTime: string;
 }
 
-// Removed unused initialTasks
+const initialTasks = [
+    {
+        id: '1',
+        title: 'Sample Task',
+        priority: 1,
+        status: 'pending',
+        startDate: '2024-02-20',
+        startTime: '10:00',
+        endDate: '2024-02-20',
+        endTime: '11:00'
+    }
+]
 
 const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -55,10 +59,6 @@ const TaskDateTime = ({ label, date, time }: { label: string, date: string, time
         <div className="text-sm">{formatTime(time)}</div>
     </div>
 );
-
-const handleError = (error: Error | unknown) => {
-    console.error(error)
-  }
 
 export function TaskCard({ task, onDelete }: { task: Task, onDelete: (id: string) => void }) {
     const [isEditOpen, setIsEditOpen] = useState(false);
@@ -94,22 +94,18 @@ export function TaskCard({ task, onDelete }: { task: Task, onDelete: (id: string
     )
 }
 
-export default function TaskList({ tasks: initialTasks, onTaskUpdate, onTaskDelete }: TaskListProps) {
+export function TaskList() {
     const [tasks, setTasks] = useState(initialTasks)
     const [isAddOpen, setIsAddOpen] = useState(false)
 
     const handleAdd = async (newTask: any): Promise<void> => {
-        try {
-            setTasks([...tasks, { ...newTask, id: String(tasks.length + 1) }])
-            setIsAddOpen(false)
-        } catch (error) {
-            handleError(error as Error)
-        }
-export default function TaskList({ tasks: initialTasks, onTaskDelete }: TaskListProps) {
+        setTasks([...tasks, { ...newTask, id: String(tasks.length + 1) }])
+        setIsAddOpen(false)
+    }
 
     const handleDelete = (id: string) => {
         setTasks(tasks.filter(task => task.id !== id))
-    const handleAdd = async (newTask: Task): Promise<void> => {
+    }
 
     return (
         <>
