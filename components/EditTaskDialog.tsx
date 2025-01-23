@@ -39,6 +39,11 @@ export function EditTaskDialog({ open, onOpenChange, task, onSubmit }: {
             setStatus(task.status === "finished");
             setStartDate(task.startDate || "");
             setStartTime(task.startTime || "");
+            setEndDate(task.endDate || "");
+            setEndTime(task.endTime || "");
+        }
+    }, [task]);
+
     const handleUpdate = async () => {
         const updatedTask = {
             title,
@@ -52,11 +57,6 @@ export function EditTaskDialog({ open, onOpenChange, task, onSubmit }: {
         if (onSubmit) {
             await onSubmit(updatedTask);
         }
-        setOpen(false);
-    };
-            endTime
-        };
-        console.log(updatedTask);
         setOpen(false);
     };
 
