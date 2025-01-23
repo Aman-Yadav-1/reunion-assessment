@@ -18,7 +18,12 @@ type Task = {
     endTime: string;
 };
 
-export function EditTaskDialog({ open, onOpenChange, task }: { open: boolean; onOpenChange: (isOpen: boolean) => void; task: Partial<Task>; }) {
+export function EditTaskDialog({ open, onOpenChange, task, onSubmit }: { 
+    open: boolean; 
+    onOpenChange: (isOpen: boolean) => void; 
+    task: Partial<Task>;
+    onSubmit?: (task: Omit<Task, "id">) => Promise<void>;
+}) {
     const [title, setTitle] = useState(task?.title || "");
     const [priority, setPriority] = useState(task?.priority || 1);
     const [status, setStatus] = useState(task?.status === "finished");
@@ -34,20 +39,21 @@ export function EditTaskDialog({ open, onOpenChange, task }: { open: boolean; on
             setStatus(task.status === "finished");
             setStartDate(task.startDate || "");
             setStartTime(task.startTime || "");
-            setEndDate(task.endDate || "");
-            setEndTime(task.endTime || "");
-        }
-    }, [task]);
-
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
         const updatedTask = {
-            ...task,
             title,
             priority,
             status: status ? "finished" : "pending",
             startDate,
             startTime,
             endDate,
+            endTime
+        };
+        if (onSubmit) {
+            await onSubmit(updatedTask);
+        }
+        setOpen(false);
+    };
             endTime
         };
         console.log(updatedTask);
