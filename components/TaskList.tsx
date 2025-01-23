@@ -60,9 +60,9 @@ const TaskDateTime = ({ label, date, time }: { label: string, date: string, time
     </div>
 );
 
-const handleError = (error: Error) => {
+const handleError = (error: Error | unknown) => {
     console.error(error)
-}
+  }
 
 export function TaskCard({ task, onDelete }: { task: Task, onDelete: (id: string) => void }) {
     const [isEditOpen, setIsEditOpen] = useState(false);
