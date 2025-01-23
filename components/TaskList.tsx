@@ -98,8 +98,18 @@ export function TaskList() {
     const [tasks, setTasks] = useState<Task[]>(initialTasks)
     const [isAddOpen, setIsAddOpen] = useState(false)
 
-    const handleAdd = async (newTask: Omit<Task, 'id'>): Promise<void> => {
-        setTasks([...tasks, { ...newTask, id: String(tasks.length + 1) }])
+    const handleAdd = async (task: Partial<Task>): Promise<void> => {
+        const newTask = {
+            title: task.title || '',
+            priority: task.priority || 1,
+            status: task.status || 'pending',
+            startDate: task.startDate || '',
+            startTime: task.startTime || '',
+            endDate: task.endDate || '',
+            endTime: task.endTime || '',
+            id: String(tasks.length + 1)
+        }
+        setTasks([...tasks, newTask])
         setIsAddOpen(false)
     }
 
