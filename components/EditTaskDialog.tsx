@@ -4,7 +4,19 @@ import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
 import { useState, useEffect } from "react"
-import { Calendar } from "lucide-react" 
+import { Calendar } from "lucide-react"
+
+// Define the Task type
+type Task = {
+    id: string;
+    title: string;
+    priority: number;
+    status: string;
+    startDate: string;
+    startTime: string;
+    endDate: string;
+    endTime: string;
+};
 
 export function EditTaskDialog({ open, onOpenChange, task }: { open: boolean; onOpenChange: (isOpen: boolean) => void; task: Partial<Task>; }) {
     const [title, setTitle] = useState(task?.title || "");
