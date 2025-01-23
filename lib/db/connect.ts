@@ -12,8 +12,10 @@ interface MongooseCache {
 }
 
 declare global {
-  const cached: MongooseCache = global.mongoose || { conn: null, promise: null }}
+  var mongoose: { conn: null | typeof mongoose; promise: null | Promise<typeof mongoose> };
+}
 
+let cached = global.mongoose
 
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null }
